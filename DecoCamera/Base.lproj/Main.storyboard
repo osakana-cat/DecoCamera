@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="9455FE3A-9BD3-4DB4-ADE6-0F49CE8AA0CA" translatesAutoresizingMaskIntoConstraints="NO" id="8OJ-c4-iK2">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="C98645A0-4216-4BA3-BD0C-FA0B7B271FCB" translatesAutoresizingMaskIntoConstraints="NO" id="8OJ-c4-iK2">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DHf-SL-n5f">
@@ -88,7 +88,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="9455FE3A-9BD3-4DB4-ADE6-0F49CE8AA0CA" translatesAutoresizingMaskIntoConstraints="NO" id="PxB-Ci-ZEa">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="C98645A0-4216-4BA3-BD0C-FA0B7B271FCB" translatesAutoresizingMaskIntoConstraints="NO" id="PxB-Ci-ZEa">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pf-0L-W1n">
@@ -139,7 +139,7 @@
                                     <action selector="backButtonAction:" destination="wdX-y9-rRM" eventType="touchUpInside" id="JxD-4i-70F"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="czx-92-5b2">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="czx-92-5b2">
                                 <rect key="frame" x="240.5" y="424" width="118" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="2Qf-9c-Ubb"/>
@@ -244,7 +244,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="9455FE3A-9BD3-4DB4-ADE6-0F49CE8AA0CA" width="639" height="694">
+        <image name="C98645A0-4216-4BA3-BD0C-FA0B7B271FCB" width="639" height="694">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

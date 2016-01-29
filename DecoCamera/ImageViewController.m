@@ -34,6 +34,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    self.scale = 1;
+    
     self.imageView.image = self.editImage;
     
     self.isGray = NO;
@@ -81,14 +83,13 @@
 //ボタンアクション系
 
 
-
+//+ or -のscaleの計算をして共通メソッドを呼び出す
 -(IBAction)minusButtonAction:(id)sender{
     
-    self.isMinus = !self.isMinus;
-    
-    if (self.isMinus) {
+
         
         self.countNumber --;
+    
         self.scale = [self culculateScale:self.countNumber];
 
         
@@ -96,17 +97,7 @@
         //editImageをresizeImageメソッドへ渡す(引数)
         //resultImageがself.imageView.imageに代入される  [self filterImage:self.editImage]イコールresultImage
         self.imageView.image = [self filterImage:self.editImage];
-        
-        
-    } else {
-        
-        
-        self.minusButton.titleLabel.text = @"-";
-        [self.minusButton setTitle:@"-" forState:UIControlStateNormal];
-        
-        self.imageView.image = self.editImage;
-        
-    }
+
 
 
     
@@ -116,9 +107,7 @@
 -(IBAction)plusButtonAction:(id)sender{
     
     
-    self.isPlus = !self.isPlus;
-    
-    if (self.isPlus) {
+
 
     self.countNumber ++;
     
@@ -129,14 +118,8 @@
     self.imageView.image = [self filterImage:self.editImage];
     //editImageをresizeImageメソッドへ渡す(引数) 　毎回editimageを渡すため　明度・白黒の呼び出すメソッドが必要
     //resultImageがself.imageView.imageに代入される
-    }else{
+        
     
-        self.plusButton.titleLabel.text = @"+";
-        [self.plusButton setTitle:@"+" forState:UIControlStateNormal];
-        
-        self.imageView.image = self.editImage;
-        
-    }
     
         
 }
@@ -173,16 +156,12 @@
     self.isGray = !self.isGray;
     
 
-    
+    //このIF文で変更するのはGrayボタンの表示をリセットかGrayかを変更
      if (self.isGray) {
-         
+
          
          [self.grayButton setTitle:@"Reset" forState:UIControlStateNormal];
          
-         //Storyboard上のUIImageViewに画像を描画
-         //editImageをresizeImageメソッドへ渡す(引数)
-         //resultImageがself.imageView.imageに代入される  [self filterImage:self.editImage]イコールresultImage
-         self.imageView.image = [self filterImage:self.editImage];
          
          
      } else {
@@ -191,9 +170,14 @@
          self.grayButton.titleLabel.text = @"Gray";
          [self.grayButton setTitle:@"Gray" forState:UIControlStateNormal];
          
-         self.imageView.image = self.editImage;
          
      }
+    
+    //Storyboard上のUIImageViewに画像を描画
+    //editImageをresizeImageメソッドへ渡す(引数)
+    //resultImageがself.imageView.imageに代入される  [self filterImage:self.editImage]イコールresultImage
+    //self.imageView.imageには他の要素もあるため毎回呼び出す。
+    self.imageView.image = [self filterImage:self.editImage];
     
     
 }
@@ -201,22 +185,12 @@
 
 - (IBAction)SliderChanged:(id)sender {
 
-    
-    
-    self.isBrightness = !self.isBrightness;
-    
-    
-    if (self.isBrightness) {
-    
-     self.imageView.image = [self filterImage:self.editImage];
-        
-    }else{
-    
-        self.imageView.image = self.editImage;
 
     
-    
-    }
+    //sliderの値はコードからハンドリングする必要がないため共通メソッドを呼び出すのみ
+     self.imageView.image = [self filterImage:self.editImage];
+        
+
 
 }
 
@@ -251,6 +225,8 @@
     
     //白黒加工　これがサイズについてくる↓
     
+    
+    if (self.isGray) {
     CGRect imageRect = (CGRect){0.0, 0.0, resultImage.size.width, resultImage.size.height};
     
     // CoreGraphicsのモノクロ色空間を準備します
@@ -265,16 +241,31 @@
     // ビットマップコンテキストに描画された画像を取得
     CGImageRef imageRef = CGBitmapContextCreateImage(context);
     
-    // 取得した画像からUIImageを作る　変換
-     UIImage *grayScaleImage = [UIImage imageWithCGImage:imageRef];
+    // 取得した画像からUIImageを作る→変換 拡大率明度を変更した画像とは別のUIImageが作成されているので、resutImageに変更後の画像を渡す
+     //UIImage *grayScaleImage = [UIImage imageWithCGImage:imageRef];
+    
+    resultImage =  [UIImage imageWithCGImage:imageRef];
+    
+        
+       
     
     CGColorSpaceRelease(colorSpace);
     CFRelease(imageRef);
     CGContextRelease(context);
     
     
+        
+    } else {
+        
+        
+    }
+
+        
     
     //明度↓
+    
+    //if (self.isBrightness) {
+    
     
         
         // UIImageをCIImageに変換
@@ -293,25 +284,16 @@
         NSDictionary *contextOptions = [NSDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithBool:YES],kCIContextUseSoftwareRenderer,nil];
         CIContext *ciContext = [CIContext contextWithOptions:contextOptions];
         CGImageRef imgRef = [ciContext createCGImage:filterdImage fromRect:[filterdImage extent]];
-        resultImage = [UIImage imageWithCGImage:imgRef scale:0.5f orientation:UIImageOrientationUp];
+    
+    
+        resultImage = [UIImage imageWithCGImage:imgRef scale:1 orientation:UIImageOrientationUp];
     
     
 
      CGImageRelease(imgRef);
-       
- 
+    //}
 
-
-    
-
-    // 準備した色空間、ビットマップコンテキスト、取得した画像をメモリから解放
-    //CGColorSpaceRelease(colorSpace);
-    //CGContextRelease(context);
-    //CFRelease(imageRef);
-    //CGImageRelease(imgRef);
-    
-
-
+        
     
     
     //加工した画像を返す　返り値

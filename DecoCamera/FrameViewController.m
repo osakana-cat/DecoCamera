@@ -41,7 +41,7 @@
     
     cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     
-    // CollectionView上のUIImageViewをタグを用いて取得
+    // CollectionView上のUIImage Viewをタグを用いて取得
     UIImageView *imageView = (UIImageView *)[cell viewWithTag:1];
     NSString *imgName = [NSString stringWithFormat:@"frame_%02ld.png", (long)[self.frameArray[indexPath.row] integerValue]];
     UIImage *image = [UIImage imageNamed:imgName];
